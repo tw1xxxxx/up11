@@ -3,6 +3,8 @@ nixPkgs = ["python311"]
 
 [phases.install]
 cmds = [
+    "python3 -m ensurepip --upgrade",
+    "python3 -m pip install --upgrade pip",
     "python3 -m pip install -r shop_project/requirements.txt",
     "cd shop_project && python3 manage.py collectstatic --noinput"
 ]
