@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Копирование requirements.txt и установка зависимостей
-COPY shop_project/requirements.txt .
+# Используем production requirements без Windows-специфичных пакетов
+COPY requirements-production.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копирование всего проекта
