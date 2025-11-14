@@ -3,10 +3,10 @@ nixPkgs = ["python311"]
 
 [phases.install]
 cmds = [
-    "pip install -r shop_project/requirements.txt",
-    "cd shop_project && python manage.py collectstatic --noinput"
+    "python3 -m pip install -r shop_project/requirements.txt",
+    "cd shop_project && python3 manage.py collectstatic --noinput"
 ]
 
 [start]
-cmd = "cd shop_project && gunicorn shop_project.wsgi:application --bind 0.0.0.0:$PORT"
+cmd = "cd shop_project && python3 -m gunicorn shop_project.wsgi:application --bind 0.0.0.0:$PORT"
 
