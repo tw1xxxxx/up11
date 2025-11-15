@@ -17,12 +17,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копирование всего проекта
 COPY shop_project/ .
 
+# Копирование скрипта создания суперпользователя
+COPY create_superuser.py .
+
 # Сборка статических файлов
 RUN python manage.py collectstatic --noinput
 
 # Запуск приложения
 # Создаем скрипт запуска для правильной обработки переменной PORT
-RUN echo '#!/bin/sh\nset -e\npython manage.py migrate --noinput || true\nexec gunicorn shop_project.wsgi:application --bind 0.0.0.0:${PORT:-8000}' > /app/start.sh && chmod +x /app/start.sh
+RUN echo '#!/bin/sh\nset -e\npython manage.py migrate --noinput || true\npython create_superuser.py || true\nexec gunicorn shop_project.wsgi:application --bind 0.0.0.0:${PORT:-8000}' > /app/start.sh && chmod +x /app/start.sh
 
 CMD ["/app/start.sh"]
 
