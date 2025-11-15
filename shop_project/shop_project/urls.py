@@ -25,6 +25,12 @@ urlpatterns = [
     path('api/', include('api_shop.urls')),
 ]
 
+# Обслуживание статических и медиа-файлов
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+else:
+    # В production медиа-файлы обслуживаются через WhiteNoise или напрямую
+    # Для Railway добавляем обслуживание медиа-файлов
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

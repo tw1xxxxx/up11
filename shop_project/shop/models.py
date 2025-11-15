@@ -68,7 +68,7 @@ class Brand(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название марки')
     country = models.CharField(max_length=100, verbose_name='Страна производитель')
     description = models.TextField(verbose_name='Описание')
-    logo = models.ImageField(upload_to='brands/', verbose_name='Логотип')
+    logo = models.ImageField(upload_to='brands/', verbose_name='Логотип', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -94,7 +94,7 @@ class Car(models.Model):
     color = models.CharField(max_length=50, verbose_name='Цвет')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     mileage = models.IntegerField(verbose_name='Пробег')
-    image = models.ImageField(upload_to='cars/', verbose_name='Фото автомобиля')
+    image = models.ImageField(upload_to='cars/', verbose_name='Фото автомобиля', blank=True, null=True)
     is_available = models.BooleanField(default=True, verbose_name='Доступен для продажи')
     year = models.IntegerField(verbose_name='Год выпуска', default=2024)
     features = models.TextField(verbose_name='Особенности', blank=True)

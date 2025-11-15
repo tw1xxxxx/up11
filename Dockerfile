@@ -25,7 +25,7 @@ RUN python manage.py collectstatic --noinput
 
 # Запуск приложения
 # Создаем скрипт запуска для правильной обработки переменной PORT
-RUN echo '#!/bin/sh\nset -e\npython manage.py migrate --noinput || true\npython create_superuser.py || true\nexec gunicorn shop_project.wsgi:application --bind 0.0.0.0:${PORT:-8000}' > /app/start.sh && chmod +x /app/start.sh
+RUN echo '#!/bin/sh\nset -e\npython manage.py migrate --noinput || true\npython create_superuser.py || true\npython manage.py fill_database || true\nexec gunicorn shop_project.wsgi:application --bind 0.0.0.0:${PORT:-8000}' > /app/start.sh && chmod +x /app/start.sh
 
 CMD ["/app/start.sh"]
 
