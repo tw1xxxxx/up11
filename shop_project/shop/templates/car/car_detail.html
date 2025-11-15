@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-6">
             {% if car.image %}
-            <img src="{{ car.image.url }}" class="img-fluid rounded shadow" alt="{{ car.model }}" onerror="this.src='https://via.placeholder.com/800x600?text={{ car.model.brand.name|urlencode }}+{{ car.model.name|urlencode }}'; this.onerror=null;">
+            <img src="{{ car.image.url }}" class="img-fluid rounded shadow" alt="{{ car.model }}" style="max-height: 500px; object-fit: contain;" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600/333333/ffffff?text={{ car.model.brand.name|urlencode }}+{{ car.model.name|urlencode }}';">
             {% else %}
-            <img src="https://via.placeholder.com/800x600?text={{ car.model.brand.name|urlencode }}+{{ car.model.name|urlencode }}" class="img-fluid rounded shadow" alt="{{ car.model }}">
+            <img src="https://via.placeholder.com/800x600/333333/ffffff?text={{ car.model.brand.name|urlencode }}+{{ car.model.name|urlencode }}" class="img-fluid rounded shadow" alt="{{ car.model }}" style="max-height: 500px; object-fit: contain;">
             {% endif %}
         </div>
         <div class="col-md-6">
