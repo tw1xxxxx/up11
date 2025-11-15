@@ -20,6 +20,7 @@ COPY shop_project/ .
 # Сборка статических файлов
 RUN python manage.py collectstatic --noinput
 
-# Запуск приложения с автоматическим выполнением миграций
-CMD python manage.py migrate --noinput && gunicorn shop_project.wsgi:application --bind 0.0.0.0:$PORT
+# Запуск приложения
+# Миграции выполняются автоматически при старте, но с обработкой ошибок
+CMD sh -c "python manage.py migrate --noinput || true && gunicorn shop_project.wsgi:application --bind 0.0.0.0:$PORT"
 
