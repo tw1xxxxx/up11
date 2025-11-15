@@ -186,6 +186,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Настройка для обслуживания медиа-файлов в production
+# В Railway медиа-файлы не сохраняются между деплоями (эфемерная файловая система)
+# Рекомендуется использовать внешнее хранилище (S3, Cloudinary) для production
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
